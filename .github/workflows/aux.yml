@@ -1,0 +1,37 @@
+name: Aux test
+
+on:
+  workflow_run:
+    workflows: ["Main test"]
+    types:
+      - requested
+
+jobs:
+  job1:
+    name: job 1
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: checkout codes
+      uses: actions/checkout@v2
+
+    - name: print out a number of env vars
+      run: |
+        echo "GITHUB_WORKFLOW is ${GITHUB_WORKFLOW}"
+        echo "GITHUB_RUN_ID is ${GITHUB_RUN_ID}"
+        echo "GITHUB_RUN_NUMBER is ${GITHUB_RUN_NUMBER}"
+        echo "GITHUB_ACTION is ${GITHUB_ACTION}"
+        echo "GITHUB_ACTOR is ${GITHUB_ACTOR}"
+        echo "GITHUB_REPOSITORY is ${GITHUB_REPOSITORY}"
+        echo "GITHUB_SHA is ${GITHUB_SHA}"
+        echo "GITHUB_REF is ${GITHUB_REF}"
+        echo "GITHUB_HEAD_REF is ${GITHUB_HEAD_REF}"
+        echo "GITHUB_BASE_REF is ${GITHUB_BASE_REF}"
+
+    - name: print out github_event_path env
+      run: cat ${GITHUB_EVENT_PATH}
+
+    - name: print out github context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo ${GITHUB_CONTEXT}
