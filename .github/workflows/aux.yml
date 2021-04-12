@@ -40,8 +40,8 @@ jobs:
     - name: curl wo authentication
       run: curl -I ${{github.event.workflow_run.jobs_url}}
 
-    - name: curl w authentication
-      run: curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Accept:appliccation/vnd.github.v3+json" ${{github.event.workflow_run.jobs_url}}
+#    - name: curl w authentication
+#      run: curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Accept:appliccation/vnd.github.v3+json" ${{github.event.workflow_run.jobs_url}}
 
     - name: python wo authentication
       run: echo ${{github.event.workflow_run.jobs_url}} | ./ps1.py
