@@ -27,6 +27,7 @@ jobs:
         echo "GITHUB_REF is ${GITHUB_REF}"
         echo "GITHUB_HEAD_REF is ${GITHUB_HEAD_REF}"
         echo "GITHUB_BASE_REF is ${GITHUB_BASE_REF}"
+        echo ${{github.event.workflow_run.jobs_url}}
 
     - name: print out github_event_path env
       run: cat ${GITHUB_EVENT_PATH}
