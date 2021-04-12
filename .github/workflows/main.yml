@@ -41,7 +41,7 @@ jobs:
     name: Check if repos are current
     runs-on: ubuntu-20.04
 
-    step:
+    steps:
     - name: sleep
       if: env.execute == yes
       run: |
