@@ -9,7 +9,7 @@ from urllib.request import urlopen, Request
 def main():
 
   url = sys.stdin.read()
-  token = AUTH
+  token = os.environ.get('AUTH')
 
   request = Request(url)
   request.add_header('Authorization', 'token %s' % token)
