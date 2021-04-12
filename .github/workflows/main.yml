@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: ['master']
 env:
-  execute: yes
+  execute: no
 
 jobs:
   job1:
