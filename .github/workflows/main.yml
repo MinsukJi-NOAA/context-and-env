@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     outputs:
-      execute: yes
+      execute: no
 
     steps:
     - name: checkout codes
