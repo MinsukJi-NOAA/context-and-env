@@ -60,5 +60,5 @@ jobs:
       env:
         AUTH: ${{secrets.GITHUB_TOKEN}}
       run: |
-        conclusion=$(echo ${{github.event.workflow_run.jobs_url}} | ./job_status_check.py "repocheck")
+        conclusion=$(echo ${{github.event.workflow_run.jobs_url}} | ./job_status_check.py "check if repos are current")
         echo $conclusion
