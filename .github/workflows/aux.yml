@@ -41,7 +41,7 @@ jobs:
       run: curl -I ${{github.event.workflow_run.jobs_url}}
 
     - name: try api access using curl with authentication
-      run: curl -I -H "Authorization: token $${{secrets.GITHUB_TOKEN}}" ${{github.event.workflow_run.jobs_url}}
+      run: curl -I -H "Authorization: token ${{secrets.GITHUB_TOKEN}}" ${{github.event.workflow_run.jobs_url}}
 
     - name: try api access using python script without authentication
       run: echo ${{github.event.workflow_run.jobs_url}} | ./ps1.py
