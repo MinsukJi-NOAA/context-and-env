@@ -24,7 +24,7 @@ def main():
 
   time.sleep(2)
   url = sys.stdin.read()
-  job_name = sys.argv[2]
+  job_name = sys.argv[1]
   token = os.environ.get('AUTH')
 
   request = Request(url)
