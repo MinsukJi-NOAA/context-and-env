@@ -40,9 +40,9 @@ jobs:
   repocheck:
     name: Check if repos are current
     runs-on: ubuntu-20.04
+    if: env.execute == 'yes'
 
     steps:
     - name: sleep
-      if: env.execute == 'yes'
       run: |
         sleep 60
