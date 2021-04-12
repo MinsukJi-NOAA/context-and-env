@@ -4,13 +4,14 @@ on:
     branches: ['master']
   pull_request:
     branches: ['master']
-env:
-  execute: no
 
 jobs:
   job1:
     name: job 1
     runs-on: ubuntu-20.04
+
+    outputs:
+      execute: yes
 
     steps:
     - name: checkout codes
@@ -37,10 +38,13 @@ jobs:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
 
+
+
   repocheck:
     name: Check if repos are current
     runs-on: ubuntu-20.04
-    if: env.execute == 'yes'
+    needs: job1
+    if: needs.job1.outputs.execute == 'yes'
 
     steps:
     - name: sleep
