@@ -45,4 +45,4 @@ jobs:
     - name: sleep
       if: env.execute == 'yes'
       run: |
-        sleep(60)
+        sleep 60
