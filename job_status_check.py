@@ -22,7 +22,7 @@ def update_url_data(response, job_name):
 
 def main():
 
-  time.sleep(2)
+  time.sleep(20)
   url = sys.stdin.read()
   job_name = sys.argv[1]
   token = os.environ.get('AUTH')
