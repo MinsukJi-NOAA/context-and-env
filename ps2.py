@@ -12,6 +12,8 @@ def main():
   url = sys.stdin.read()
   token = os.environ.get('AUTH')
 
+  print(token)
+
   request = Request(url)
   request.add_header('Authorization', 'token %s' % token)
   response = urlopen(request)

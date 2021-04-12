@@ -1,10 +1,11 @@
 name: Aux test
-
 on:
   workflow_run:
     workflows: ["Main test"]
     types:
       - requested
+env:
+  app: "Accept:application/vnd.github.v3+json"
 
 jobs:
   job1:
@@ -36,18 +37,28 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
+#
+#    - name: curl without auth
+#      run: curl -sS -I -H "$app" ${{github.event.workflow_run.jobs_url}}
+#
+#    - name: curl with auth
+#      run: |
+#        curl -sS -I -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "$app" ${{github.event.workflow_run.jobs_url}}
+#
+#    - name: python wo authentication
+#      run: echo ${{github.event.workflow_run.jobs_url}} | ./ps1.py
+#
+  job2:
+    name: job 2
+    runs-on: ubuntu-20.04
 
-    - name: curl without auth
-      run: curl -sS -I ${{github.event.workflow_run.jobs_url}}
-
-    - name: curl with auth
-      run: |
-        curl -sS -I -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Accept:application/vnd.github.v3+json" ${{github.event.workflow_run.jobs_url}}
-
-    - name: python wo authentication
-      run: echo ${{github.event.workflow_run.jobs_url}} | ./ps1.py
-
+    steps:
+    - name: checkout codes
+      uses: actions/checkout@v2
+      
     - name: python w authentication
       env:
         AUTH: ${{secrets.GITHUB_TOKEN}}
-      run: echo ${{github.event.workflow_run.jobs_url}} | ./ps2.py
+      run: |
+        conclusion=$(echo ${{github.event.workflow_run.jobs_url}} | ./job_status_check.py "repocheck")
+        echo $conclusion
