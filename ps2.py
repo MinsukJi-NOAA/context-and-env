@@ -15,6 +15,9 @@ def main():
   request = Request(url)
   request.add_header('Authorization', 'token %s' % token)
   response = urlopen(request)
+
+  print(response.info())
+
   data = json.loads(response.read().decode())
   print(json.dumps(data, indent=4))
 

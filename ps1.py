@@ -10,6 +10,9 @@ def main():
 
   url = sys.stdin.read()
   response = urlopen(url)
+
+  print(response.info())
+
   data = json.loads(response.read().decode())
   print(json.dumps(data, indent=4))
 
