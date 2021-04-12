@@ -41,7 +41,8 @@ jobs:
       run: curl -sS -I ${{github.event.workflow_run.jobs_url}}
 
     - name: without auth
-      run: curl -sS -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Accept:application/vnd.github.v3+json" ${{github.event.workflow_run.jobs_url}}
+      run: |
+        curl -sS -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Accept:application/vnd.github.v3+json" ${{github.event.workflow_run.jobs_url}}
 
     - name: python wo authentication
       run: echo ${{github.event.workflow_run.jobs_url}} | ./ps1.py
