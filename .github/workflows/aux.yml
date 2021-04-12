@@ -47,9 +47,6 @@ jobs:
     - name: python wo authentication
       run: echo ${{github.event.workflow_run.jobs_url}} | ./ps1.py
 
-#    - name: auth
-#      run: echo "AUTH=${{secrets.GITHUB_TOKEN}}" >> $GITHUB_ENV
-#
     - name: python w authentication
       env:
         AUTH: ${{secrets.GITHUB_TOKEN}}
