@@ -1,0 +1,2 @@
+This is to text github env vars and context
+Check main and aux for both push and pull_request events
